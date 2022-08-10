@@ -1,11 +1,10 @@
-// import organization models
+// import organization model
 import Organization from "../models/organization.js";
-// import user models
+// import user model
 import User from "../models/user.js";
 
 // function get All Organization
 export const getOrganizations = async (req, res, next) => {
-    console.log('func getorganization run')
     try {
         const organizations = await Organization.find();
         res.json(organizations);
@@ -27,9 +26,8 @@ export const getOrganizationById = async (req, res, next) => {
 }
  
 // function Create Organization
-export const saveOrganization = async (req, res, next) => {
+export const createOrganization = async (req, res, next) => {
 
-    //console.log('func saveorganization run');
     try {
         const organization = new Organization({
             name : req.body.name,
@@ -45,8 +43,6 @@ export const saveOrganization = async (req, res, next) => {
         // create organization id to usermodel
         const update = { organization: savedOrganization.id };
         const Usermodel = await User.findById(res.locals.userid);
-        console.log(Usermodel,'ini usermodel');
-        console.log(update,'ini id organization baru');
         Usermodel.organizations.push({organization: savedOrganization.id});
         Usermodel.save();
         // end

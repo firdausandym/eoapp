@@ -1,7 +1,7 @@
 // import mongoose 
 import mongoose from "mongoose";
 
-// const schema
+// create organization schema
 const Organization = new mongoose.Schema({
     name: String,
     users: [{
@@ -14,5 +14,5 @@ const Organization = new mongoose.Schema({
        }],    
 }, { timestamps: { createdAt: 'created', updatedAt : 'updated' }});
 
-// export model
+// export organization model
 export default mongoose.model('Organization', Organization);
