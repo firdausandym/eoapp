@@ -1,7 +1,7 @@
 // import mongoose 
 import mongoose from "mongoose";
 
-// const schema
+// create project schema
 const Project = new mongoose.Schema({
     organization : String,
     name: String,
@@ -14,5 +14,5 @@ const Project = new mongoose.Schema({
     createdby: String,
 }, { timestamps: { createdAt: 'created', updatedAt : 'updated' }});
 
-// export model
+// export project model
 export default mongoose.model('Project', Project);

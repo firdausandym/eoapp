@@ -1,5 +1,6 @@
 // import express
 import express from "express";
+// import passport
 import passport from "passport";
 
 var router = express.Router();
@@ -7,7 +8,7 @@ var router = express.Router();
 // import controllers Organization
 import { getOrganizations, 
     getOrganizationById, 
-    saveOrganization} from "../controllers/organizationController.js";
+    createOrganization} from "../controllers/organizationController.js";
  
 // import controllers User
 import { getUsers, 
@@ -41,7 +42,7 @@ router.post('/user', saveUser);
 router.post('/login', passport.authenticate('local'), getToken);
 
 // Route CREATE Organization
-router.post('/organization', AuthenticateAccessToken, saveOrganization);
+router.post('/organization', AuthenticateAccessToken, createOrganization);
 
 // Route Get Project
 router.get('/project',AuthenticateAccessToken, getProjects)

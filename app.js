@@ -21,7 +21,7 @@ import dotenv from "dotenv";
 const app = express();
 dotenv.config();
 
-// connect ke database mongoDB
+// configuration database mongoDB
 mongoose.connect("mongodb://localhost:27017/eoapp",{ 
     useNewUrlParser: true,
     useUnifiedTopology: true

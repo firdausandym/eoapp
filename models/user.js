@@ -1,10 +1,10 @@
 // import mongoose 
 import mongoose from "mongoose";
 
-// bcrypt
+// import bcrypt
 import bcrypt from "bcrypt";
 
-// const schema
+// create user schema
 const User = new mongoose.Schema({
 
     name: String,
@@ -36,7 +36,6 @@ User.pre("save", function (next) {
             return next(hashError)
           }
           user.password = hash
-          console.log(user,'ini hash dari model/user.js')
           next()
         })
       }
@@ -46,5 +45,5 @@ User.pre("save", function (next) {
   }
 })
 
-// export model
+// export user model
 export default mongoose.model('User', User);

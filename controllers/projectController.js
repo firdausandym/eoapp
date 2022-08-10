@@ -7,7 +7,6 @@ import User  from "../models/user.js";
 
 // function get All projects
 export const getProjects = async (req, res, next) => {
-    console.log('func getprojects run')
     try {
         const projects = await Project.find();
         res.json(projects);
@@ -32,11 +31,9 @@ export const createProject = async (req, res, next) => {
         })
         
         const createdproject = await project.save();
-        console.log(createdproject.id,'ini createdproject');
 
         // create project to organization model
         const Organizationmodel = await Organization.findById(req.body.organization);
-        console.log(Organizationmodel, 'ini organization model')
         Organizationmodel.projects.push({project: createdproject.id});
         Organizationmodel.save();
         // end
@@ -44,7 +41,6 @@ export const createProject = async (req, res, next) => {
         const Usermodel = await User.findById(res.locals.userid);
         Usermodel.projects.push({project: createdproject.id});
         Usermodel.save();
-        console.log(Usermodel, 'ini usermodel')
         // end
         res.status(201).json(createdproject);
 
