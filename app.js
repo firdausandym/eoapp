@@ -13,7 +13,7 @@ import session from "express-session";
 // import body-parser
 import bodyParser from "body-parser";
 // import localstrategy
-import {localStrategy} from './passport.js';
+import {localStrategy, serialize} from './passport.js';
 // import dotenv
 import dotenv from "dotenv";
 
@@ -35,8 +35,9 @@ db.once('open', () => console.log('Database Connected'));
 app.use(cors());
 app.use(express.json());
 
-// localstrategy 
+// localstrategy and serialization
 localStrategy(passport);
+serialize(passport);
 app.use(express.static("public"));
 app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));

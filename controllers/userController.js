@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
 // function get single user
 export const getUserById = async (req, res) => {
     try {
-        const user = await User.findById(req.body.id);
+        const user = await User.findById(req.params.id);
         const token = jwt.sign(
             { user_id: user._id },
             process.env.JWT_KEY,

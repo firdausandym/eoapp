@@ -4,8 +4,8 @@ import User from './models/user.js';
 import bcrypt from "bcrypt";
 
 // localstrategy function + bcrypt
-export const localStrategy = () => {
-  passport.use('local', new Strategy(
+export const localStrategy = (passportParam = passport) => {
+  passportParam.use('local', new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password'
@@ -38,14 +38,13 @@ export const localStrategy = () => {
   ));
 }
 
-// serialize function
-export const serialize = (req, res, next) => 
-{
-  passport.serializeUser(function(user, done) {
+// serialize function (registers serialize/deserialize on a passport instance)
+export const serialize = (passportParam = passport) => {
+  passportParam.serializeUser(function(user, done) {
     done(null, user.id);
   });
-  
-  passport.deserializeUser(function(id, done) {
+
+  passportParam.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
       done(err, user);
     });
